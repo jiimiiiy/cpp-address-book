@@ -21,6 +21,7 @@ void showMenus() {
 	cout << "4.查找联系人" << endl;
 	cout << "5.修改联系人" << endl;
 	cout << "6.显示联系人" << endl;
+	cout << "7.清空所有联系人" << endl;
 	cout << "0.退出通讯录" << endl;
 }
 
@@ -135,7 +136,7 @@ void editContact() {
 				cout << "修改完成，返回主菜单！" << endl;
 				return;
 			default:
-				cout << "请输入1-5的数字" << endl;
+				cout << "请输入0-4的数字" << endl;
 				break;
 				
 			}
@@ -193,6 +194,28 @@ void findContact() {
 		cout << "该联系人不存在！" << endl;
 	}
 }
+
+void clearAllContact() {
+	if (contactCount == 0) {
+		cout << "通讯录为空，无须清除！" << endl;
+		return;
+	}
+	cout << "⚠确定要清除所有联系人吗？（y/n)" << endl;
+	char confirm;
+	cin >> confirm;
+	if (confirm == 'y' || confirm == 'Y') {
+		contactCount = 0;
+		cout << "通讯录已清空" << endl;
+	}
+	else if(confirm=='n' || confirm == 'N') {
+		cout << "已取消该操作" << endl;
+		return;
+	}
+	else {
+		cout << "输入无效，已取消操作" << endl;
+	}
+}
+
 int main() {
 	int choice = 0;
 	do {
@@ -218,11 +241,14 @@ int main() {
 		case 6:
 			showContacts();
 			break;
+		case 7:
+			clearAllContact();
+			break;
 		case 0:
 			system("pause");
 			break;
 		default:
-			cout << "请输入0到6的数字" << endl;
+			cout << "请输入0到7的数字" << endl;
 			break;
 		}
 
